@@ -1,0 +1,47 @@
+
+$N = 5
+$x(1,1) = 3 $x(1,2) = 2 $x(1,3) = 3 $x(1,4) = 4 $x(1,5) = 4
+$x(2,1) = 5 $x(2,2) = 5 $x(2,3) = 4 $x(2,4) = 2 $x(2,5) = 3
+$x(3,1) = 2 $x(3,2) = 4 $x(3,3) = 1 $x(3,4) = 3 $x(3,5) = 4
+$x(4,1) = 3 $x(4,2) = 5 $x(4,3) = 1 $x(4,4) = 4 $x(4,5) = 1
+$x(5,1) = 4 $x(5,2) = 4 $x(5,3) = 5 $x(5,4) = 1 $x(5,5) = 1
+
+;;Question1;;
+bigand $i in [1..$N]:
+    bigand $j in [1..$N]: 
+ 	   p($i,$j,$x($i,$j))
+    end 
+end
+
+;;Question2;;
+bigand $i in [1..$N]:
+    bigand $j in [1..$N]:
+        bigand $k1 in [1..$N]:
+            bigand $k2 in [1..$N] when $k1 != $k2:
+                p($i,$j,$k1) => not p($i,$j,$k2)
+            end
+        end
+    end
+end
+
+;;Question3;;
+bigand $i in [1..$N]:
+    bigand $j1 in [1..$N]:
+        bigand $j2 in [1..$N] when $j1 != $j2 :
+            bigand $k in [1..$N]:
+                p($i,$j1,$k) and p($i,$j2,$k) => noirci($i,$j1) or noirci($i,$j2)
+            end
+        end
+    end
+end
+
+;;Question4;;
+bigand $i1 in [1..$N]:
+    bigand $i2 in [1..$N] when $i1 != $i2:
+        bigand $j in [1..$N]  :
+            bigand $k in [1..$N]:
+                p($i1,$j,$k) and p($i2,$j,$k) => noirci($i1,$j) or noirci($i2,$j)
+            end
+        end
+    end
+end
